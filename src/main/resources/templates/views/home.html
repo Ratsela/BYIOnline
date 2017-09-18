@@ -1,0 +1,203 @@
+<html layout:decorator="layout">
+<div layout:fragment="content">
+
+	<div class="inner cover">
+		<h1 class="cover-heading">Welcome to BYI online Application
+			system.</h1>
+		<p class="lead">Please click the below button to complete the
+			application process.</p>
+		<p class="lead">
+			<a class="btn btn-info" href="#" data-toggle="modal"
+				data-target="#registrationModal">Continue to application</a>
+		</p>
+	</div>
+
+
+	<div class="modal fade" id="registrationModal" tabindex="-1"
+		role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel" style="color: black">
+						Registration</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12"
+							style="border-right: 1px dotted #C2C2C2; padding-right: 30px;">
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#personalDetails"
+									data-toggle="tab" style="color: black">Personal Details</a></li>
+								<li><a href="#NextOfKinDetails" data-toggle="tab"
+									style="color: black">Next of Kin Details</a></li>
+								<li><a href="#Registration" data-toggle="tab"
+									style="color: black">Course Choices</a></li>
+								<li><a href="#Registration" data-toggle="tab"
+									style="color: black">Confirmation</a></li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content">
+
+								<!--PERSONAL INFORMATION -->
+
+								<div class="tab-pane active" id="personalDetails">
+									<form action="/registerStudent" method="post" role="form" class="form-horizontal" >
+										<div class="form-group">
+											<label for="email" class="col-sm-2 control-label"
+												style="color: black">Name</label>
+											<div class="col-sm-10">
+												<div class="row">
+
+													<div class="col-md-9">
+														<input type="text" name="nameAndSurname"
+															id="nameAndSurname" class="form-control"
+															placeholder="Name and Surname as in ID Document" />
+													</div>
+													<div class="col-md-3">
+														<select class="form-control" name="gender" id="gender">
+															<option>Female</option>
+															<option>Male</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="email" class="col-sm-2 control-label"
+												style="color: black"> Email</label>
+											<div class="col-sm-10">
+												<input type="email" class="form-control" id="email"
+													name="email" placeholder="Email" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="mobile" class="col-sm-2 control-label"
+												style="color: black"> Mobile</label>
+											<div class="col-sm-10">
+												<input type="email" class="form-control" id="mobile"
+													name="mobile" placeholder="Mobile" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="idNumber" class="col-sm-2 control-label"
+												style="color: black"> ID Number</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="idNumber"
+													name="idNumber" placeholder="13 Digit Id Number" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="PhysicalAddress" class="col-sm-2 control-label"
+												style="color: black"> Physical Address</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="PhysicalAddress"
+													name="PhysicalAddress" placeholder="Physical Address" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="PostalAddress" class="col-sm-2 control-label"
+												style="color: black"> Postal Address</label>
+											<div class="col-sm-10">
+												<div class="row">
+
+													<div class="col-md-9">
+														<input type="text" name="postalAddress" id="postalAddress"
+															class="form-control" placeholder="Postal Address" />
+													</div>
+													<div class="col-md-3">
+														<input type="text" name="postalCode" id="postalCode"
+															class="form-control" placeholder="Code" />
+													</div>
+												</div>
+
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-sm-2"></div>
+											<div class="col-sm-10">
+												<button type="button" class="btn btn-primary btn-sm" data-toggle="tab" data-target="#NextOfKinDetails">Next</button>
+												<!-- <a class="btn btn-info" href="#NextOfKinDetails/register?studIdNumber=idNumber" data-toggle="tab">Next</a>-->
+												<button type="button" class="btn btn-default btn-sm">
+													Cancel</button>
+											</div>
+										</div>
+									</form>
+								</div>
+
+								<!-- NEXT OF KIN DETAILS -->
+
+								<div class="tab-pane" id="NextOfKinDetails">
+									<form role="form" class="form-horizontal">
+										<div class="form-group">
+											<label for="nextOfKinName" class="col-sm-2 control-label"
+												style="color: black"> Name</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="nextOfKinName"
+													name="nextOfKinName" placeholder="Name" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="nextOfKinSurname" class="col-sm-2 control-label"
+												style="color: black"> Surname</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control"
+													id="nextOfKinSurname" placeholder="Surname" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="nextOfKinContact" class="col-sm-2 control-label"
+												style="color: black"> Contact Number</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control"
+													id="nextOfKinContact" placeholder="Contact Number" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="nextOfKinEmail" class="col-sm-2 control-label"
+												style="color: black"> Email</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="nextOfKinEmail"
+													placeholder="Email Address" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="nextOfKinID" class="col-sm-2 control-label"
+												style="color: black"> ID Number</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="nextOfKinID"
+													placeholder="13 Digit ID Number" />
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-sm-2"></div>
+											<div class="col-sm-10">
+												<button type="button" class="btn btn-primary btn-sm">
+													Save & Continue</button>
+												<button type="button" class="btn btn-default btn-sm">
+													Cancel</button>
+											</div>
+										</div>
+									</form>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+</html>
