@@ -30,7 +30,7 @@ public class NextOfKin implements Serializable{
 	private String contact;
 	
 	@OneToOne
-	@JoinColumn(name = "IDNumber")
+	@JoinColumn(name = "IDNumber",referencedColumnName = "IDNumber")
 	private Student student;
 
 	public NextOfKin() {

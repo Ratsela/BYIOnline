@@ -3,10 +3,13 @@ package com.byionline.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -43,17 +46,18 @@ public class Student implements Serializable{
 	@Column(name = "postalCode")
 	private String postalCode;
 	
-	@OneToOne
-	@JoinColumn(name = "IDNumber")
+	@OneToOne(optional = false,cascade = CascadeType.ALL,mappedBy="student",targetEntity = NextOfKin.class)
 	private NextOfKin nextOfKin;
 	
-	@OneToOne
-	@JoinColumn(name = "school_code")
+	@OneToOne(optional = false,cascade = CascadeType.ALL,mappedBy = "student",targetEntity = School.class)
 	private School school;
 	
-	@OneToMany
-	@JoinColumn(name = "subject_code")
+	@OneToMany(mappedBy = "student", targetEntity = SchoolSubject.class,fetch = FetchType.EAGER)
 	private List<SchoolSubject> schoolSubjects;
+	
+	@ManyToOne
+	@JoinColumn(name = "school_code",referencedColumnName = "school_code")
+	private School schoolStudent;
 
 	public Student() {
 	}

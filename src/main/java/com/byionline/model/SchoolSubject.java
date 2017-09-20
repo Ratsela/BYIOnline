@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,12 +31,16 @@ public class SchoolSubject implements Serializable {
 	private List<School> shcool;
 	
 	@OneToMany
-	@JoinColumn(name = "IDNumber")
+	@JoinColumn(name = "IDNumber",referencedColumnName = "IDNumber")
 	private List<Student> students;
 	
 	@ManyToOne
-	@JoinColumn(name = "IDNumber")
+	@JoinColumn(name = "IDNumber",referencedColumnName = "IDNumber")
 	private Student student;
+	
+	@ManyToOne(fetch = FetchType.LAZY,optional = false)
+	@JoinColumn(name = "subject_code",referencedColumnName = "subject_code",insertable = false,updatable = false)
+	private School school;
 
 	public SchoolSubject() {
 	}

@@ -24,5 +24,9 @@ public class StudentRepoImplementation {
 		}
 		return exist;
 	}
+	
+	public Student createStudent(Student student) {
+		return studentRepository.save(student);
+	}
 
 }

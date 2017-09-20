@@ -1,10 +1,15 @@
 package com.byionline.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +25,13 @@ public class Circuit implements Serializable{
 	
 	@Column(name = "province")
 	private String province;
+	
+	@OneToOne
+	@JoinColumn(name = "circuit_code",referencedColumnName = "circuit_code")
+	private School school;
+	
+	/*@OneToMany(mappedBy = "circuit",targetEntity = School.class,fetch = FetchType.EAGER)
+	private List<School> schools;*/
 
 	public Circuit() {
 	}

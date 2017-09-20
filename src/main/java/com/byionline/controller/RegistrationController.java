@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.byionline.model.Student;
 import com.byionline.service.StudentRepoImplementation;
 
 @Controller
@@ -26,14 +27,32 @@ public class RegistrationController {
 	}
 	
 	@RequestMapping(value = "/registerStudent",method = RequestMethod.POST)
-	public ModelAndView registerStudent(Model model,@RequestParam("idNumber")String idNumber) {
-		if(studentRepository.checkIfStudentExists(idNumber)) {
+	public ModelAndView registerStudent(Model model,@RequestParam("idNumber")String idNumber,
+										@RequestParam("nameAndSurname") String nameAndSurname,
+										@RequestParam("gender") String gender,
+										@RequestParam("email") String email,
+										@RequestParam("mobile")String mobile,
+										@RequestParam("PhysicalAddress")String physicalAddress,
+										@RequestParam("postalAddress")String postalAddress,
+										@RequestParam("postalCode")String postalCode) {
+		
+		String firstName = nameAndSurname.substring(0, nameAndSurname.indexOf(" "));
+		String lastName = nameAndSurname.substring(nameAndSurname.indexOf(" "));
+		
+		Student student = new Student(idNumber, firstName, lastName, gender, email, mobile, postalAddress, physicalAddress, postalCode);
+		
+		if(studentRepository.checkIfStudentExists(student.getId())) {
 			logger.info("Student with id number " + idNumber +" exist");
 		}else {
 			logger.info("Continue with registration = {}");
+			
+			
+			
+			studentRepository.createStudent(student);
+			logger.info(firstName + "#" + lastName);
 		}
 		
-		return new ModelAndView("");
+		return new ModelAndView("views/home");
 	}
 
 }
