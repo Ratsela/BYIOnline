@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/byi")
 public class HomeController {
 	@RequestMapping(value="",method = RequestMethod.GET)
 	public String getHome()

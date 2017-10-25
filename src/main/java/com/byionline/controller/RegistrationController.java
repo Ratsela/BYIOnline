@@ -14,7 +14,7 @@ import com.byionline.model.Student;
 import com.byionline.service.StudentRepoImplementation;
 
 @Controller
-@RequestMapping(value = "/register")
+@RequestMapping(value = "/student")
 public class RegistrationController {
 	
 	//private final StudentRepository studentRepository;
@@ -26,7 +26,31 @@ public class RegistrationController {
 		this.studentRepository = studentRepository;
 	}
 	
-	@RequestMapping(value = "/registerStudent",method = RequestMethod.POST)
+	@RequestMapping(value = "/checkStudent",method = RequestMethod.POST)
+	public ModelAndView checkStudent(Model model,@RequestParam(value = "studentId")String studentId) {
+		String exists = "";
+		String message = "";
+		String page = "";
+		
+		if(studentRepository.checkIfStudentExists(studentId)) {
+			logger.info("Student with ID number: " + studentId + " Already applied");
+			exists = "Exist";
+			message = "Student with ID number: " + studentId + " Already applied";
+			page = "redirect:/byi";
+			model.addAttribute("exist", exists);
+			model.addAttribute("message", message);
+			
+		}else if(!studentRepository.checkIfStudentExists(studentId)){
+			exists = "Not Existing";
+			model.addAttribute("exist", exists);
+			page = "views/applicationForm";
+			logger.info("Proceed");
+		}
+		return new ModelAndView(page);
+	}
+	
+	
+	/*@RequestMapping(value = "/registerStudent",method = RequestMethod.POST)
 	public ModelAndView registerStudent(Model model,@RequestParam("idNumber")String idNumber,
 										@RequestParam("nameAndSurname") String nameAndSurname,
 										@RequestParam("gender") String gender,
@@ -53,6 +77,6 @@ public class RegistrationController {
 		}
 		
 		return new ModelAndView("views/home");
-	}
+	}*/
 
 }
