@@ -26,26 +26,38 @@ public class RegistrationController {
 		this.studentRepository = studentRepository;
 	}
 	
-	@RequestMapping(value = "/checkStudent",method = RequestMethod.POST)
+	@RequestMapping(value = "/checkStudent",method = RequestMethod.GET)
 	public ModelAndView checkStudent(Model model,@RequestParam(value = "studentId")String studentId) {
 		String exists = "";
 		String message = "";
 		String page = "";
 		
-		if(studentRepository.checkIfStudentExists(studentId)) {
-			logger.info("Student with ID number: " + studentId + " Already applied");
-			exists = "Exist";
-			message = "Student with ID number: " + studentId + " Already applied";
-			page = "redirect:/byi";
-			model.addAttribute("exist", exists);
-			model.addAttribute("message", message);
-			
-		}else if(!studentRepository.checkIfStudentExists(studentId)){
-			exists = "Not Existing";
-			model.addAttribute("exist", exists);
-			page = "views/applicationForm";
-			logger.info("Proceed");
+		if(studentRepository.validateIdNnumber(studentId)) {
+			String gender = studentRepository.maleOrFemale(studentId);
+			logger.info(gender);
+			if(studentRepository.checkIfStudentExists(studentId)) {
+				logger.info("Student with ID number: " + studentId + " Already applied");
+				exists = "Exist";
+				message = "Student with ID number: " + studentId + " Already applied";
+				//page = "redirect:/byi";
+				
+				model.addAttribute("exist", exists);
+				model.addAttribute("message", message);
+				page = "views/studentExistsError";
+			}else if(!studentRepository.checkIfStudentExists(studentId)){
+				exists = "Not Existing";
+				model.addAttribute("exist", exists);
+				model.addAttribute("gender", gender);
+				model.addAttribute("studentId", studentId);
+				page = "views/applicationForm";
+				logger.info("Proceed");
+			}
+		}else {
+			logger.info("Invalid ID Number");
+			page = "views/invalidIdError";
 		}
+		
+		
 		return new ModelAndView(page);
 	}
 	

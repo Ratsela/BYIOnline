@@ -10,7 +10,9 @@
 			
 		</p>
 	</div>
-<form action="student/register" class="modal multi-step" id="applicationModal">
+	<!-- <form action="student/register" class="modal multi-step" id="applicationModal"> -->
+	
+<div class="modal multi-step" id="applicationModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -36,22 +38,34 @@
                     </div>
                 </div>
             </div>
+            <form action="/application/createStudentObject" method="get" id="studentPersonalDetails" name="studentPersonalDetails">
             <div class="modal-body step-1" data-step="1">
 				<p style="color: black">Student personal Details.</p>
-				<input type="text" id="firstName" name="firstName" class="form-control" placeholder="Full Names" required="required" autofocus="autofocus"/><br>
-				<input type="hidden" id="firstNameParam" name="firstNameParam" class="form-control" placeholder="Full Names"/>
-				<input type="text" id="lasttName" name="lasttName" class="form-control" placeholder="Surname" required="required"/><br>
-				<select class="form-control" name="gender" id="gender">
-															<option>Female</option>
-															<option>Male</option>
-				</select><br>
+				
+				
+				<div class="col-sm-10">
+												<div class="row">
+
+													<div class="col-md-9">
+														<input type="text" class="form-control" id="studentId" name="studentId" th:placeholder="${studentId}" th:value="${studentId}"/><br>
+														<input type="hidden" id="idNumber" name="studId"> 
+													</div>
+													<div class="col-md-3">
+														<input type="text" class="form-control" id="gender" name="gender"  th:placeholder="${gender}" th:value="${gender}"/>
+														<input type="hidden" name="studGender" id="studGender">
+													</div>
+												</div>
+				</div>
+				
+				<input type="text" id="fullNames" name="fullNames" class="form-control" placeholder="Full Names" required="required" autofocus="autofocus"/><br>
+				<!-- <input type="hidden" id="firstNameParam" name="firstNameParam" class="form-control" placeholder="Full Names"/> -->
+				<input type="text" id="surname" name="surname" class="form-control" placeholder="Surname" required="required"/><br>
+				
 				<input type="email" class="form-control" id="email" name="email" placeholder="Email" /><br>
 													
 				<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile" /><br>
 													
-				<input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="13 Digit Id Number" /><br>
-													
-				<input type="text" class="form-control" id="PhysicalAddress" name="PhysicalAddress" placeholder="Physical Address" /><br>
+				<input type="text" class="form-control" id="physicalAddress" name="physicalAddress" placeholder="Physical Address" /><br>
 													
 				<div class="form-group">
 											<div class="col-sm-10">
@@ -70,6 +84,8 @@
 											</div>
 				</div>
             </div>
+            </form>
+            
             <div class="modal-body step-2" data-step="2">
                 <p style="color: black">Next of kin Details.</p>
 				
@@ -146,25 +162,29 @@
 			</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary step step-1" data-step="1" onclick="sendEvent('#demo-modal-3', 2)">Continue</button> 
+                <!-- <buttoataStep1" id="" class="btn btn-primary step step- onclick="sendEvent('#applicationModal', 2)"1" data-step="1">Cnue</bnue</a> --> -->
+				<button type="button" name="dataStep1" id="dataStep1" class="btn btn-primary step step-1" data-step="1" >Continue</button>
+				
+				
+				
 				
 				<!-- <a class="btn btn-info" href="student/checkStudent?idNumber="
 				onclick="sendEvent('#demo-modal-3', 2)">Continue</a> -->
 
 
-                <button type="button" class="btn btn-primary step step-2" data-step="2" onclick="sendEvent('#demo-modal-3', 1)">Back</button>
-                <button type="button" class="btn btn-primary step step-2" data-step="2" onclick="sendEvent('#demo-modal-3', 3)">Continue</button>
+                <button type="button" class="btn btn-primary step step-2" data-step="2" onclick="sendEvent('#applicationModal', 1)">Back</button>
+                <button type="button" class="btn btn-primary step step-2" data-step="2" onclick="sendEvent('#applicationModal', 3)">Continue</button>
 				
-				<button type="button" class="btn btn-primary step step-3" data-step="3" onclick="sendEvent('#demo-modal-3', 2)">Back</button>
-				<button type="button" class="btn btn-primary step step-3" data-step="3" onclick="sendEvent('#demo-modal-3', 4)">Continue</button>
+				<button type="button" class="btn btn-primary step step-3" data-step="3" onclick="sendEvent('#applicationModal', 2)">Back</button>
+				<button type="button" class="btn btn-primary step step-3" data-step="3" onclick="sendEvent('#applicationModal', 4)">Continue</button>
 				
-				<button type="button" class="btn btn-primary step step-4" data-step="4" onclick="sendEvent('#demo-modal-3', 3)">Back</button>
-				<button type="button" class="btn btn-primary step step-4" data-step="4" onclick="sendEvent('#demo-modal-3', 5)">Continue</button>
-				<button type="button" class="btn btn-primary step step-5" data-step="5" onclick="sendEvent('#demo-modal-3', 4)">Back</button>
+				<button type="button" class="btn btn-primary step step-4" data-step="4" onclick="sendEvent('#applicationModal', 3)">Back</button>
+				<button type="button" class="btn btn-primary step step-4" data-step="4" onclick="sendEvent('#applicationModal', 5)">Continue</button>
+				<button type="button" class="btn btn-primary step step-5" data-step="5" onclick="sendEvent('#applicationModal', 4)">Back</button>
 				<button type="button" class="btn btn-primary step step-5" data-step="5" >Submit</button>
             </div>
         </div>
     </div>
-</form>
+</div>
 </div>
 </html>

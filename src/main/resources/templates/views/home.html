@@ -11,18 +11,21 @@
 		</p>
 	</div>
 	
-	<form action="student/checkStudent" method="post">
+	<form action="student/checkStudent" method="get">
 		<div class="col-sm-4">
-				<input type="text" size="13" id="studentId" name="studentId" class="form-control" placeholder="Enter ID number" required="required" autofocus="autofocus"/>
+			
+			</div>
+		<div class="col-sm-4">
+				<input type="text" size="13" id="studentId" name="studentId" class="form-control" placeholder="Enter ID number" required="required" autofocus="autofocus"/><br>
+				<input class="btn btn-info" type="submit" name="validateStudent" value="Verify">
+				<!-- <input type="file" value="Select"> -->
 			</div>
 			<div class="col-sm-4">
 				<!-- <a class="btn btn-info" href="student/checkStudent?idNumber=" data-toggle="modal"
 				data-target="#demo-modal-3">Continue to application</a> -->
-				<input class="btn btn-info" type="submit" name="validateStudent" value="Verify"> 
+				 
 			</div>
-			<div class="col-sm-4">
 			
-			</div>
 	</form>
 </div>
 </html>
